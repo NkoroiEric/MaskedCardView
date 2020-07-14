@@ -1,23 +1,24 @@
-package com.enterprise.lib
+package com.enterprise.maskedCardView
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import com.enterprise.maskedCardView.R.*
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.shape.*
 
 @SuppressLint("ResourceType", "Recycle")
-class MaskedCardView @JvmOverloads constructor(context: Context, attrs:AttributeSet? = null, defStyle:Int= R.attr.materialCardViewStyle) :
+class MaskedCardView @JvmOverloads constructor(context: Context, attrs:AttributeSet? = null, defStyle:Int= attr.materialCardViewStyle) :
     MaterialCardView(context,attrs,defStyle){
 
     init {
-        val a = context.obtainStyledAttributes(attrs,R.styleable.MaskedCardView) as TypedArray
-        val edgeSize = a.getDimension(R.styleable.MaskedCardView_edgeSizeDp,8f)
-        val indexCorner = a.getLayoutDimension(R.styleable.MaskedCardView_cornerSide,0)
-        val indexEdge = a.getLayoutDimension(R.styleable.MaskedCardView_edgeSide,1)
-        val cornerSize = a.getLayoutDimension(R.styleable.MaskedCardView_cornerSizeDp,8).toFloat()
-        val cornerFamily = a.getInt(R.styleable.MaskedCardView_cornerFamilyType,0)
+        val a = context.obtainStyledAttributes(attrs, styleable.MaskedCardView) as TypedArray
+        val edgeSize = a.getDimension(styleable.MaskedCardView_edgeSizeDp,8f)
+        val indexCorner = a.getLayoutDimension(styleable.MaskedCardView_cornerSide,0)
+        val indexEdge = a.getLayoutDimension(styleable.MaskedCardView_edgeSide,1)
+        val cornerSize = a.getLayoutDimension(styleable.MaskedCardView_cornerSizeDp,8).toFloat()
+        val cornerFamily = a.getInt(styleable.MaskedCardView_cornerFamilyType,0)
         println(attrs)
         a.recycle()
         shapeAppearanceModel = shapeAppearanceModel.toBuilder().apply {

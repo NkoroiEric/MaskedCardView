@@ -27,13 +27,52 @@ task clean(type: Delete) {
 }
 
 ext {
-    libraryVersion = '1.0.0-alpha01'
-    libraryPackage = 'com.enterprise.lib'
-    libraryDir = "com/enterprise/lib"
+    libraryVersion = '1.0.0-alpha02'
+    libraryPackage = 'com.enterprise.maskedCardView'
+    libraryDir = "com/enterprise/maskedCardView"
 }
+def getArchivesBaseName(name){
+    if (name == 'lib'){
+        return 'material'
+    }
+}
+
+
 
 subprojects {
     //mavenRepoUrl = (project.hasProperty('mavenRepoUrl') ? project.property('mavenRepoUrl') : '/tmp/myRepo/')
     version = rootProject.ext.libraryVersion
-    group = 'com.enterprise.lib'
+    group = 'com.enterprise.maskedCardView'
+
+    project.plugins.whenPluginAdded { plugin ->
+        def isAndroidLibrary = "com.android.build.gradle.LibraryPlugin".equals(plugin.class.name)
+
+        if (isAndroidLibrary){
+            project.android {
+                if (isAndroidLibrary){
+                    def JAVA_RESOURCES_TEMP_DIR = "$buildDir/javaResources"
+                    task writeVersionFile(){
+                        def versionFileDir = JAVA_RESOURCES_TEMP_DIR + '/META-INF'
+                        def versionFileName = libraryPackage + '_' + getArchivesBaseName(project.name) + '.version'
+
+                        new File(versionFileDir).mkdirs()
+                        new File(versionFileDir + '/' + versionFileName).text = libraryVersion + "\n"
+                    }
+
+                    libraryVariants.all {
+                        it.processJavaResourcesProvider.get().dependsOn(writeVersionFile)
+                    }
+                    project.android.sourceSets.main.resources.srcDir JAVA_RESOURCES_TEMP_DIR
+                }
+            }
+            project.afterEvaluate {
+                project.tasks.all {
+                    if (it instanceof com.android.build.gradle.tasks.GenerateBuildConfig){
+                        // Disable generating BuildConfig.java
+                        it.enabled = false
+                    }
+                }
+            }
+        }
+    }
 }
