@@ -74,7 +74,7 @@ afterEvaluate {
 
                 artifact androidSourcesJar
 
-                groupId = 'com.enterprise.lib'
+                groupId = 'com.enterprise.maskedCardView'
                 artifactId = 'material'
                 version project.version
                 pom {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import androidx.annotation.RequiresApi
 import com.enterprise.maskedCardView.R.*
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.shape.*
