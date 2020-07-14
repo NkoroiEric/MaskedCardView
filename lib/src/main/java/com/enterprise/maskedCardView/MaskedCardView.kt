@@ -15,12 +15,11 @@ class MaskedCardView @JvmOverloads constructor(context: Context, attrs:Attribute
 
     init {
         val a = context.obtainStyledAttributes(attrs, styleable.MaskedCardView) as TypedArray
-        val edgeSize = a.getDimension(styleable.MaskedCardView_edgeSizeDp,8f)
+        val edgeSize = a.getDimension(styleable.MaskedCardView_edgeSizeDp,0f)
         val indexCorner = a.getLayoutDimension(styleable.MaskedCardView_cornerSide,0)
         val indexEdge = a.getLayoutDimension(styleable.MaskedCardView_edgeSide,1)
         val cornerSize = a.getLayoutDimension(styleable.MaskedCardView_cornerSizeDp,8).toFloat()
         val cornerFamily = a.getInt(styleable.MaskedCardView_cornerFamilyType,0)
-        println(attrs)
         a.recycle()
         shapeAppearanceModel = shapeAppearanceModel.toBuilder().apply {
             when {
@@ -28,10 +27,10 @@ class MaskedCardView @JvmOverloads constructor(context: Context, attrs:Attribute
                     corner(indexCorner, cornerSize, cornerFamily)
                     edges(indexEdge,edgeSize)
                 }
-                edgeSize > 0 && indexCorner < 0 -> {
+                edgeSize > 0 && indexCorner <= 0 -> {
                     edges(indexEdge,edgeSize)
                 }
-                edgeSize < 0 && indexCorner > 0 -> {
+                edgeSize <= 0 && indexCorner > 0 -> {
                     corner(indexCorner, cornerSize, cornerFamily)
                 }
         }

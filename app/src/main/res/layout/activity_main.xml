@@ -12,22 +12,20 @@
         tools:context=".MainActivity"
         >
 
-        <com.enterprise.lib.MaskedCardView
-            android:id="@+id/ticketView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardElevation="@dimen/card_corner_radius"
-            app:edgeSizeDp="8dp"
-            app:cornerSizeDp="16dp"
-            app:cornerSide="bottomLeft_topRight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            />
+    <com.enterprise.maskedCardView.MaskedCardView
+        android:id="@+id/ticketView"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="@dimen/card_corner_radius"
+        app:cardPreventCornerOverlap="false"
+        app:edgeSide="right_left"
+        app:edgeSizeDp="@dimen/card_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
