@@ -1,6 +1,6 @@
 # MaskedCardView
 
-lib is locally on my machine and you to can do the same using:
+lib is local repo on my machine and you to can use it locally by running this commands:
 gradlew build
 gradlew publishToMavenLocal
 
